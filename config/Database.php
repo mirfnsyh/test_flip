@@ -20,8 +20,24 @@ class Database{
 			return $conn;
 		}
 
+		//Default Sql Function
+
+		public function listFieldToString($field){
+				$res = "";
+				for($i=0;$i<count($field);$i++){
+					$res .= $field[$i];
+					$res .= ", ";
+				}
+
+				$res = rtrim($res, ", ");
+
+				return $res;
+		}
+
 		public function insert($table, $field, $value){
-			$sql = "INSERT INTO ".$table." ".$field." VALUES ( ".$value." ) ";
+			$field = $this->listFieldToString($field);
+			
+			$sql = "INSERT INTO ".$table." ( ".$field." ) VALUES ( ".$value." ) ";
 
 			$result = mysqli_query($this->connection(), $sql);
 

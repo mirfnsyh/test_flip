@@ -13,8 +13,8 @@ class Index {
 
 	public function index(){
 
+		$listData = $this->IndexService->showAllData();//List data Dari table transaction
 		$content = 'view/index/index.php'; //page path untuk di parsing ke view master
-		$listData = $this->IndexService->showAllData();
 
 		return require_once('view/shared/master.php');
 	}

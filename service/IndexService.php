@@ -1,13 +1,13 @@
 <?php 
 require_once('config/Config.php');
-require_once('model/IndexModel.php');
+require_once('daos/IndexDao.php');
 
 class IndexService { 
 
 	public function __construct()  
     {  
         $this->config = new Config();
-        $this->IndexModel = new IndexModel();
+        $this->IndexDao = new IndexDao();
     } 
 
 	public function doPost($param){
@@ -23,7 +23,7 @@ class IndexService {
 
 		//Validasi response yang di dapat
 		if(count($dataResponse) > 2){
-			$this->IndexModel->insertResponse($dataResponse);
+			$this->IndexDao->insertResponse($dataResponse);
 		}
 
 		return true;
@@ -42,7 +42,7 @@ class IndexService {
 		
 		//Validasi response yang di dapat
 		if(count($dataResponse) > 2){
-			$this->IndexModel->updateResponse($id,$dataResponse);
+			$this->IndexDao->updateResponse($id,$dataResponse);
 		}
 
 		return true;
@@ -92,7 +92,7 @@ class IndexService {
     }
 
     public function showAllData(){
-    	return $this->IndexModel->showAllData();
+    	return $this->IndexDao->showAllData();
     }
 
 }
